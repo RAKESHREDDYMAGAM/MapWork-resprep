@@ -22,11 +22,7 @@ export default function Page() {
             const homeSection = document.getElementById('home');
             const featuresSection = document.getElementById('features');
             const pricingSection = document.getElementById('pricing');
-            const contactSection = document.getElementById('contact');
-
-            if (contactSection && scrollPosition >= contactSection.offsetTop) {
-                setActiveSection('contact');
-            } else if (pricingSection && scrollPosition >= pricingSection.offsetTop) {
+            if (pricingSection && scrollPosition >= pricingSection.offsetTop) {
                 setActiveSection('pricing');
             } else if (featuresSection && scrollPosition >= featuresSection.offsetTop) {
                 setActiveSection('features');

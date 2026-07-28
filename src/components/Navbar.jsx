@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar({ activeSection, onLinkClick }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,32 +23,35 @@ export default function Navbar({ activeSection, onLinkClick }) {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Features', href: '#features' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Contact Us', href: '#contact' }
+    { name: 'Home', href: '/#home', matches: 'home' },
+    { name: 'Features', href: '/#features', matches: 'features' },
+    { name: 'Pricing', href: '/#pricing', matches: 'pricing' },
+    { name: 'About Us', href: '/about', matches: 'about' },
+    { name: 'Blog', href: '/blog', matches: 'blog' },
+    { name: 'Contact Us', href: '/contact', matches: 'contact' }
   ];
 
   const handleNavClick = (e, href) => {
-    e.preventDefault();
     setIsDrawerOpen(false);
 
-    // Smooth scroll to element or trigger callback
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 80, // Offset for navbar height
-        behavior: 'smooth'
-      });
+    // If it's a hash anchor and we are currently on the home page, perform smooth scroll
+    if (href.startsWith('/#') && pathname === '/') {
+      e.preventDefault();
+      const targetId = href.replace('/#', '');
+      const element = document.getElementById(targetId);
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop - 80, // Offset for navbar height
+          behavior: 'smooth'
+        });
+      }
     }
   };
 
   return (
     <header className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container navbar">
-        <Link href="#home" onClick={(e) => handleNavClick(e, '#home')} className="navbar-logo-link" aria-label="MapWork Home" style={{ gap: '10px' }}>
+        <Link href="/#home" onClick={(e) => handleNavClick(e, '/#home')} className="navbar-logo-link" aria-label="MapWork Home" style={{ gap: '10px' }}>
           <svg className="logo-icon-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '32px', height: '32px', flexShrink: 0 }}>
             <rect width="100" height="100" rx="22" fill="#0B1F45" />
             <polygon points="35,52 6,85 35,85" fill="#ef233c" />
@@ -70,8 +75,8 @@ export default function Navbar({ activeSection, onLinkClick }) {
         <nav>
           <ul className="nav-links">
             {navLinks.map((link) => {
-              const targetId = link.href.replace('#', '');
-              const isActive = activeSection === targetId;
+              const isActive = (pathname === '/' && activeSection === link.matches) ||
+                (pathname !== '/' && pathname.startsWith(link.href) && !link.href.startsWith('/#'));
 
               return (
                 <li key={link.name}>
@@ -90,7 +95,7 @@ export default function Navbar({ activeSection, onLinkClick }) {
         </nav>
 
         <div className="navbar-cta">
-          <Link href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="btn btn-primary">
+          <Link href="/contact" onClick={(e) => handleNavClick(e, '/contact')} className="btn btn-primary">
             Get Started
           </Link>
         </div>
@@ -119,21 +124,25 @@ export default function Navbar({ activeSection, onLinkClick }) {
       {/* Mobile Menu Drawer */}
       <div className={`mobile-drawer ${isDrawerOpen ? 'open' : ''}`} aria-hidden={!isDrawerOpen}>
         <ul className="mobile-nav-links">
-          {navLinks.map((link) => (
-            <li key={link.name}>
-              <Link
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="mobile-nav-link"
-              >
-                {link.name}
-              </Link>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = (pathname === '/' && activeSection === link.matches) ||
+              (pathname !== '/' && pathname.startsWith(link.href) && !link.href.startsWith('/#'));
+            return (
+              <li key={link.name}>
+                <Link
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className={`mobile-nav-link ${isActive ? 'active' : ''}`}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
         <Link
-          href="#contact"
-          onClick={(e) => handleNavClick(e, '#contact')}
+          href="/contact"
+          onClick={(e) => handleNavClick(e, '/contact')}
           className="btn btn-primary"
           style={{ width: '100%', textAlign: 'center' }}
         >

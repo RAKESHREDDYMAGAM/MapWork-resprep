@@ -1,0 +1,78 @@
+"use strict";exports.id=295,exports.ids=[295],exports.modules={7295:(a,b,c)=>{c.d(b,{X:()=>h,default:()=>i});var d=c(1124),e=c(8301),f=c(3991),g=c.n(f);let h=[{slug:"optimizing-last-mile-logistics-metropolitan-cities",title:"Optimizing Last-Mile Logistics in Metropolitan Cities",date:"July 24, 2026",category:"Field Operations",author:"Elena Rostova",readTime:"6 min read",summary:"Analyze grid boundaries, route bottlenecks, and traffic coordination layers to achieve 98.6% on-time dispatch efficiency.",content:`# Optimizing Last-Mile Logistics in Metropolitan Cities
+
+Urban last-mile delivery is widely recognized as the most expensive, complex, and inefficient leg of the logistics journey. As metropolitan densities increase, logistics operators face rising challenges with congestion, strict regulatory constraints, and high customer expectations.
+
+### The Urban Bottleneck
+
+In metropolitan routing, traditional GPS tracking struggles due to:
+* **The Canyon Effect:** Tall buildings causing satellite signal bounce, resulting in tracking drift of up to 40 meters.
+* **Unpredictable Access Points:** Loading bays, pedestrian zones, and lock boxes that aren't mapped on commercial GPS networks.
+* **Complex Multi-floor Routing:** Couriers spending up to 30% of their street-level dispatch time searching for offices in high-rises.
+
+## Implementing Spatial Boundary Solutions
+
+To solve mapping discrepancies, operational teams are establishing custom geofenced terminals. By defining local loading circles and vehicle-specific access coordinates, dispatchers can route trucks directly to active cargo docks.
+
+### key takeaways:
+1. **Dynamic Micro-hubs:** Staging shipping containers in parking zones based on daily shipping volumes.
+2. **Access Koordinaten Mapping:** Isolating building access nodes and mapping paths to freight elevators.
+3. **Encrypted Routing Streams:** Protecting proprietary distribution paths from tracking scrapers.
+
+> "Data accuracy in route coordinates is the singular difference between a 12-minute delivery stop and a 45-minute parking fine."
+`},{slug:"increasing-field-sales-productivity-territory-design",title:"Increasing Field Sales Productivity with Territory Design",date:"July 20, 2026",category:"Sales Strategy",author:"Marcus Vance",readTime:"4 min read",summary:"How custom polygon boundaries avoid sales team overlap, map leads clearly, and maximize regional coverage.",content:`# Increasing Field Sales Productivity with Territory Design
+
+In multi-regional field sales, undefined coverage boundaries lead to team conflicts, doubled efforts, and overlooked opportunities. Structured territory mapping organizes territories to keep sales agents productive.
+
+### The Problem with ZIP Codes
+
+Typical companies assign territories using radial circles or ZIP codes. This design exhibits critical pitfalls:
+* **Asymmetric Commutes:** A ZIP code split by a river or highway might require a 40-minute detour.
+* **Density Variances:** One ZIP code may contain 15 corporate headquarters, while another contains 3.
+* **Bidding Overlap:** Sales agents attempting to pitch to different contacts at the same organization.
+
+## Modern Coordinate Boundary Mapping
+
+By deploying custom coordinate polygons, regional managers can design maps around local infrastructure realities and client counts. 
+
+* **Commute-Balanced Grids:** Draw borders aligned with actual highways and bridges.
+* **Equal Opportunity Grids:** Align boundaries such that each agent has access to a similar sales volume value.
+* **Dynamic Re-shaping:** Drag and drop coordinates to re-allocate zones as sales accounts expand.
+
+> "A balanced sales region prevents competitive conflicts and maximizes lead touchpoints."
+`},{slug:"building-resilient-spatial-geofencing-systems",title:"Building Resilient Spatial Geofencing Systems",date:"July 15, 2026",category:"Mapping Intelligence",author:"Sean O'Connor",readTime:"8 min read",summary:"A technical exploration of coordinate mathematics, geofence check triggers, and optimizing cell queries.",content:`# Building Resilient Spatial Geofencing Systems
+
+Geofencing—detecting when a device enters or exits a predefined coordinate boundary—powers fleet dispatch notifications, safety alerts, and operations triggers. 
+
+### Performance Challenges at Scale
+
+Running geofence polygon checks for 10,000 active devices every 10 seconds is computationally intense:
+1. **Ray-Casting Algorithm Limits:** Checking if a coordinate lies inside a complex polygon with 50 points requires extensive CPU cycles.
+2. **Battery Drain:** Continuous high-interval GPS queries deplete device batteries quickly.
+3. **Network Latency:** Running checks on servers causes delayed triggers.
+
+## Optimizing Boundary Queries
+
+To optimize geofencing calculations, engineers employ **Spatial Indexes**:
+
+### 1. Spatial Partitioning
+Instead of checking all polygons, partition coordinates into H3 Hexagonal or S2 grids. Match the device to its local cell, and only query geofences within that cell.
+
+### 2. Radial Pre-filtering
+Perform a cheap distance check from the device to the geofence bounding box. Run detailed ray-casting only if the device is within range.
+
+### 3. Edge Computing
+Deploy localized boundaries onto mobile devices, running checks client-side to avoid server trip lag.
+`},{slug:"announcing-mapwork-v2-enhanced-coordinate-grids",title:"Announcing MapWork v2.0: Enhanced Coordinate Grids",date:"June 30, 2026",category:"Product Updates",author:"Diana Prince",readTime:"3 min read",summary:"Explore our newly launched spatial boundary tools, custom polygon rendering speeds, and REST API updates.",content:`# Announcing MapWork v2.0: Enhanced Coordinate Grids
+
+We are excited to release MapWork 2.0. This release enhances dynamic coordinates rendering and reduces API sync latency.
+
+### Key New Features
+
+* **Sub-Millisecond Rendering:** Canvas polygon rendering speeds increased by 400% for complex operations grids.
+* **REST API v2:** Access GPS asset coordinates logs, boundary intersections, and territory profiles in single calls.
+* **Self-Healing Polygons:** Automatic snapping fixes overlay gaps, preventing boundary cracks.
+
+## Getting Started
+
+Updating is simple. Change your system endpoint hooks to call \`https://api.mapwork.com/v2\` and read the documentation for new grid schemas.
+            `}];function i(){let[a,b]=(0,e.useState)(""),[c,f]=(0,e.useState)("All"),[i,j]=(0,e.useState)(null),k=h.filter(b=>{let d="All"===c||b.category===c,e=b.title.toLowerCase().includes(a.toLowerCase())||b.summary.toLowerCase().includes(a.toLowerCase())||b.content.toLowerCase().includes(a.toLowerCase());return d&&e});return(0,d.jsxs)("section",{id:"blog",style:{backgroundColor:"var(--color-bg-white)",padding:"100px 0",borderTop:"1px solid var(--color-border)"},children:[(0,d.jsxs)("div",{className:"container",style:{maxWidth:"1100px"},children:[(0,d.jsxs)("div",{style:{textAlign:"center",marginBottom:"50px"},children:[(0,d.jsx)("span",{className:"eyebrow",children:"MapWork Resources"}),(0,d.jsx)("h2",{style:{fontSize:"2.5rem",color:"var(--color-primary-navy)",fontWeight:800,marginBottom:"16px"},children:"Operations & Mapping Intelligence"}),(0,d.jsx)("p",{style:{maxWidth:"600px",margin:"0 auto",color:"var(--color-text-body)"},children:"Discover industry best practices for route optimization, commercial fleet management, and spatial boundary systems."})]}),(0,d.jsxs)("div",{style:{display:"flex",flexDirection:"column",gap:"20px",margin:"0 0 40px 0",padding:"24px",backgroundColor:"var(--color-bg-light)",borderRadius:"var(--radius-lg)",border:"1px solid var(--color-border)"},children:[(0,d.jsxs)("div",{style:{position:"relative",width:"100%"},children:[(0,d.jsx)("div",{style:{position:"absolute",left:"16px",top:"50%",transform:"translateY(-50%)",color:"var(--color-text-body)",display:"flex",alignItems:"center"},children:(0,d.jsxs)("svg",{width:"18",height:"18",viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:"2.5",strokeLinecap:"round",strokeLinejoin:"round",children:[(0,d.jsx)("circle",{cx:"11",cy:"11",r:"8"}),(0,d.jsx)("line",{x1:"21",y1:"21",x2:"16.65",y2:"16.65"})]})}),(0,d.jsx)("input",{type:"text",placeholder:"Search guides, operations templates, and product updates...",value:a,onChange:a=>b(a.target.value),style:{width:"100%",padding:"12px 14px 12px 44px",borderRadius:"var(--radius-sm)",border:"1.5.px solid var(--color-border)",fontSize:"0.92rem",outline:"none",backgroundColor:"#FFFFFF",boxSizing:"border-box"}})]}),(0,d.jsxs)("div",{style:{display:"flex",flexWrap:"wrap",gap:"8px",alignItems:"center"},children:[(0,d.jsx)("span",{style:{fontSize:"0.78rem",fontWeight:800,textTransform:"uppercase",color:"var(--color-primary-navy)",marginRight:"10px"},children:"Filter By Topic:"}),["All","Field Operations","Mapping Intelligence","Sales Strategy","Product Updates"].map(a=>{let b=c===a;return(0,d.jsx)("button",{onClick:()=>f(a),style:{padding:"6px 14px",borderRadius:"20px",border:"1px solid",borderColor:b?"var(--color-accent-red)":"var(--color-border)",backgroundColor:b?"var(--color-accent-red)":"#FFFFFF",color:b?"#FFFFFF":"var(--color-text-body)",fontSize:"0.82rem",fontWeight:600,cursor:"pointer",transition:"all 0.2s ease"},children:a},a)})]})]}),0===k.length?(0,d.jsxs)("div",{style:{textAlign:"center",padding:"50px 20px",backgroundColor:"var(--color-bg-light)",borderRadius:"var(--radius-lg)",border:"1px solid var(--color-border)"},children:[(0,d.jsx)("h3",{style:{fontSize:"1.2rem",color:"var(--color-primary-navy)",marginBottom:"8px"},children:"No Articles Found"}),(0,d.jsx)("p",{style:{color:"var(--color-text-body)",fontSize:"0.9rem"},children:"Try checking code spelling or selecting another topic filter."})]}):(0,d.jsx)("div",{style:{display:"grid",gridTemplateColumns:"repeat(auto-fill, minmax(320px, 1fr))",gap:"30px"},children:k.map(a=>(0,d.jsxs)("article",{className:"card",style:{display:"flex",flexDirection:"column",justifyContent:"space-between",height:"100%",padding:"30px"},children:[(0,d.jsxs)("div",{children:[(0,d.jsxs)("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"14px"},children:[(0,d.jsx)("span",{style:{fontSize:"0.7rem",fontWeight:800,textTransform:"uppercase",color:"var(--color-accent-red)",backgroundColor:"rgba(200, 30, 58, 0.08)",padding:"4px 8px",borderRadius:"20px"},children:a.category}),(0,d.jsx)("span",{style:{fontSize:"0.8rem",color:"var(--color-text-body)"},children:a.readTime})]}),(0,d.jsx)("h3",{style:{fontSize:"1.3rem",color:"var(--color-primary-navy)",marginBottom:"10px",fontWeight:700,lineHeight:1.35},children:a.title}),(0,d.jsx)("p",{style:{fontSize:"0.9rem",color:"var(--color-text-body)",lineHeight:1.5,marginBottom:"20px"},children:a.summary})]}),(0,d.jsxs)("div",{style:{borderTop:"1px solid var(--color-border)",paddingTop:"14px",display:"flex",alignItems:"center",justifyContent:"space-between"},children:[(0,d.jsxs)("div",{style:{display:"flex",flexDirection:"column"},children:[(0,d.jsx)("span",{style:{fontSize:"0.8rem",fontWeight:650,color:"var(--color-primary-navy)"},children:a.author}),(0,d.jsx)("span",{style:{fontSize:"0.74rem",color:"var(--color-text-body)"},children:a.date})]}),(0,d.jsxs)(g(),{href:`/blog/${a.slug}`,style:{textDecoration:"none",fontSize:"0.84rem",fontWeight:700,color:"var(--color-accent-red)",cursor:"pointer",display:"flex",alignItems:"center",gap:"4px"},children:["Read Article ",(0,d.jsx)("span",{children:"→"})]})]})]},a.slug))})]}),i&&(0,d.jsx)("div",{onClick:()=>j(null),style:{position:"fixed",top:0,left:0,width:"100%",height:"100%",backgroundColor:"rgba(11, 31, 69, 0.7)",backdropFilter:"blur(5px)",zIndex:9999,display:"flex",alignItems:"center",justifyContent:"center",padding:"20px",boxSizing:"border-box"},children:(0,d.jsxs)("div",{onClick:a=>a.stopPropagation(),style:{backgroundColor:"#FFFFFF",borderRadius:"var(--radius-lg)",width:"100%",maxWidth:"780px",maxHeight:"90vh",overflowY:"auto",boxShadow:"var(--shadow-lg)",position:"relative",boxSizing:"border-box",display:"flex",flexDirection:"column"},children:[(0,d.jsxs)("div",{style:{position:"sticky",top:0,backgroundColor:"#FFFFFF",borderBottom:"1px solid var(--color-border)",padding:"16px 24px",display:"flex",justifyContent:"space-between",alignItems:"center",zIndex:10},children:[(0,d.jsxs)("span",{style:{fontSize:"0.8rem",color:"var(--color-text-body)",fontWeight:600},children:["MapWork Insights • ",i.category]}),(0,d.jsx)("button",{onClick:()=>j(null),style:{backgroundColor:"var(--color-bg-light)",border:"1px solid var(--color-border)",color:"var(--color-primary-navy)",width:"32px",height:"32px",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontWeight:"bold",fontSize:"1rem",transition:"background-color 0.2s"},"aria-label":"Close article modal",children:"✕"})]}),(0,d.jsxs)("div",{style:{padding:"32px 40px 48px 40px"},children:[(0,d.jsxs)("div",{style:{display:"flex",alignItems:"center",gap:"12px",marginBottom:"24px"},children:[(0,d.jsx)("div",{style:{width:"36px",height:"36px",borderRadius:"50%",backgroundColor:"var(--color-primary-navy)",color:"#FFFFFF",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:"bold",fontSize:"0.9rem"},children:i.author.charAt(0)}),(0,d.jsxs)("div",{children:[(0,d.jsx)("p",{style:{margin:0,fontSize:"0.88rem",fontWeight:650,color:"var(--color-primary-navy)"},children:i.author}),(0,d.jsxs)("p",{style:{margin:0,fontSize:"0.8rem",color:"var(--color-text-body)"},children:["Published on ",i.date," • ",i.readTime]})]})]}),(0,d.jsx)("div",{className:"article-body",children:function(a){if(!a)return null;let b=a.split("\n"),c=[],e=[],f=a=>{c.length>0&&(e.push((0,d.jsx)("ul",{style:{paddingLeft:"24px",marginBottom:"20px",display:"flex",flexDirection:"column",gap:"8px"},children:c},`list- ${a}`)),c=[])},g=a=>a.includes("**")?a.split("**").map((a,b)=>b%2==1?(0,d.jsx)("strong",{style:{color:"var(--color-primary-navy)"},children:a},b):a):a;return b.forEach((a,b)=>{let h=a.trim();if(!h)return void f(b);h.startsWith("* ")||h.startsWith("- ")?c.push((0,d.jsx)("li",{style:{fontSize:"0.98rem",color:"var(--color-text-body)",lineHeight:1.6},children:g(h.substring(2))},`li - ${b}`)):h.startsWith("### ")?(f(b),e.push((0,d.jsx)("h3",{style:{fontSize:"1.25rem",color:"var(--color-primary-navy)",marginTop:"28px",marginBottom:"12px",fontWeight:700},children:h.substring(4)},`h3 - ${b}`))):h.startsWith("## ")?(f(b),e.push((0,d.jsx)("h2",{style:{fontSize:"1.5rem",color:"var(--color-primary-navy)",marginTop:"36px",marginBottom:"16px",fontWeight:750,borderBottom:"1px solid var(--color-border)",paddingBottom:"6px"},children:h.substring(3)},`h2 - ${b}`))):h.startsWith("# ")?(f(b),e.push((0,d.jsx)("h1",{style:{fontSize:"1.9rem",color:"var(--color-primary-navy)",marginTop:"20px",marginBottom:"20px",fontWeight:800},children:h.substring(2)},`h1 - ${b}`))):h.startsWith("> ")?(f(b),e.push((0,d.jsx)("blockquote",{style:{borderLeft:"4px solid var(--color-accent-red)",paddingLeft:"16px",margin:"20px  0",fontStyle:"italic",color:"var(--color-primary-navy)"},children:h.substring(2)},`bq - ${b}`))):(f(b),e.push((0,d.jsx)("p",{style:{fontSize:"0.98rem",color:"var(--color-text-body)",lineHeight:1.65,marginBottom:"16px"},children:g(h)},`p - ${b}`)))}),f(b.length),e}(i.content)}),(0,d.jsx)("div",{style:{marginTop:"40px",paddingTop:"24px",borderTop:"1px solid var(--color-border)",textAlign:"center"},children:(0,d.jsx)("button",{onClick:()=>j(null),className:"btn btn-secondary",style:{padding:"10px 24px",fontSize:"0.9rem"},children:"Close Article"})})]})]})})]})}}};

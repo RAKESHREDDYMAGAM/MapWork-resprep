@@ -1,20 +1,24 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
+    const [isWaHovered, setIsWaHovered] = useState(false);
 
     const handleLinkClick = (e, href) => {
-        e.preventDefault();
-        const targetId = href.replace('#', '');
-        const element = document.getElementById(targetId);
-        if (element) {
-            window.scrollTo({
-                top: element.offsetTop - 80,
-                behavior: 'smooth'
-            });
+        // If it's a hash anchor and we are currently on the home page, perform smooth scroll
+        if (href.startsWith('/#') && typeof window !== 'undefined' && window.location.pathname === '/') {
+            e.preventDefault();
+            const targetId = href.replace('/#', '');
+            const element = document.getElementById(targetId);
+            if (element) {
+                window.scrollTo({
+                    top: element.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
         }
     };
 
@@ -22,8 +26,8 @@ export default function Footer() {
         <footer className="footer-wrapper">
             <div className="container footer">
                 <div className="footer-brand">
-                    <Link href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="navbar-logo-link" style={{ gap: '10px' }}>
-                        <svg className="logo-icon-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '32px', height: '32px', flexShrink: 0 }}>
+                    <Link href="/#home" onClick={(e) => handleLinkClick(e, '/#home')} className="navbar-logo-link" style={{ gap: '14px' }}>
+                        <svg className="logo-icon-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '48px', height: '48px', flexShrink: 0 }}>
                             <rect width="100" height="100" rx="22" fill="rgba(255, 255, 255, 0.1)" />
                             <polygon points="35,52 6,85 35,85" fill="#ef233c" />
                             <polygon points="35,52 35,85 50,70" fill="#ba1833" />
@@ -35,14 +39,14 @@ export default function Footer() {
                             <circle cx="50" cy="36" r="6.5" fill="#ffffff" />
                         </svg>
                         <div className="logo-text" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                            <div style={{ fontSize: '1.2rem', fontWeight: 700, lineHeight: 1.1 }}>
+                            <div style={{ fontSize: '1.6rem', fontWeight: 700, lineHeight: 1.1 }}>
                                 <span style={{ color: '#FFFFFF' }}>Map</span>
                                 <span style={{ color: 'var(--color-accent-red)' }}>Work</span>
                             </div>
-                            <span className="logo-subtext" style={{ fontSize: '0.58rem', fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px' }}>DISCOVER. MAP. EXECUTE.</span>
+                            <span className="logo-subtext" style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px' }}>DISCOVER. MAP. EXECUTE.</span>
                         </div>
                     </Link>
-                    <p className="footer-attribution" style={{ marginTop: '8px', fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.75)' }}>
+                    <p className="footer-attribution" style={{ marginTop: '8px', fontSize: '1.18rem', color: 'rgba(255, 255, 255, 0.75)' }}>
                         A product of ResultPrep Systems.
                     </p>
                 </div>
@@ -60,13 +64,87 @@ export default function Footer() {
                 </div>
 
                 <div className="footer-col">
-                    <h3 className="footer-col-title">Support</h3>
+                    <h3 className="footer-col-title">Company</h3>
                     <ul className="footer-col-links">
                         <li>
-                            <Link href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="footer-link">Contact Support</Link>
+                            <Link href="/about" className="footer-link">About Us</Link>
+                        </li>
+                        <li>
+                            <Link href="/blog" className="footer-link">Blog & Insights</Link>
+                        </li>
+                        <li>
+                            <Link href="/contact" className="footer-link">Contact Us</Link>
+                        </li>
+                    </ul>
+                </div>
+
+                <div className="footer-col">
+                    <h3 className="footer-col-title">Support</h3>
+                    <ul className="footer-col-links" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <li>
+                            <Link href="/contact" className="footer-link">Contact Support</Link>
                         </li>
                         <li>
                             <Link href="#docs" className="footer-link">API Documentation</Link>
+                        </li>
+                        <li style={{ marginTop: '20px' }}>
+                            {/* WhatsApp Quick Support Block matching image */}
+                            <a
+                                href="https://wa.me/918970007467?text=Hello%20MapWork,%20we%20need%20assistance."
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onMouseEnter={() => setIsWaHovered(true)}
+                                onMouseLeave={() => setIsWaHovered(false)}
+                                style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '16px',
+                                    textDecoration: 'none'
+                                }}
+                            >
+                                {/* Icon Wrapper */}
+                                <div style={{
+                                    width: '50px',
+                                    height: '50px',
+                                    borderRadius: '16px',
+                                    backgroundColor: isWaHovered ? 'var(--color-accent-red)' : 'rgba(255, 255, 255, 0.08)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    flexShrink: 0,
+                                    transition: 'background-color 0.25s ease'
+                                }}>
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                    </svg>
+                                </div>
+
+                                {/* Text labels */}
+                                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                    <span style={{
+                                        fontSize: '0.88rem',
+                                        fontWeight: 700,
+                                        color: isWaHovered ? '#FFFFFF' : 'rgba(255, 255, 255, 0.5)',
+                                        letterSpacing: '0.08em',
+                                        textTransform: 'uppercase',
+                                        lineHeight: 1.1,
+                                        transition: 'color 0.25s ease'
+                                    }}>
+                                        WHATSAPP
+                                    </span>
+                                    <span style={{
+                                        fontSize: '1.38rem',
+                                        fontWeight: 800,
+                                        color: isWaHovered ? 'var(--color-accent-red)' : '#FFFFFF',
+                                        letterSpacing: '0.01em',
+                                        marginTop: '2px',
+                                        lineHeight: 1.1,
+                                        transition: 'color 0.25s ease'
+                                    }}>
+                                        +91 89700 07467
+                                    </span>
+                                </div>
+                            </a>
                         </li>
                     </ul>
                 </div>
