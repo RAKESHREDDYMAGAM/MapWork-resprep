@@ -1,4 +1,7 @@
+"use client";
+
 import React from 'react';
+import Image from 'next/image';
 import heroImg from '../assets/route_planning.png';
 
 export default function Hero() {
@@ -40,15 +43,11 @@ export default function Hero() {
                 </div>
                 <div className="hero-image-container reveal active">
                     {/* Photographic Device Mockup */}
-                    <img
+                    <Image
                         src={heroImg}
                         alt="MapWork Geo Intelligence Platform Tablet Interface Mockup"
                         className="hero-photo-mockup"
-                        onError={(e) => {
-                            // Fallback to stylized SVG map if image fails to load
-                            e.target.style.display = 'none';
-                            e.target.nextSibling.style.display = 'block';
-                        }}
+                        priority
                     />
                     {/* SVG Map Fallback Container */}
                     <div style={{ display: 'none', width: '100%', maxWidth: '500px', transform: 'rotate(1deg)' }}>

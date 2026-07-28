@@ -1,4 +1,7 @@
+"use client";
+
 import React, { useState } from 'react';
+import Image from 'next/image';
 import discoveryImg from '../assets/discovery.png';
 
 export default function DiscoveryEngine() {
@@ -49,7 +52,7 @@ export default function DiscoveryEngine() {
                         ))}
                     </ul>
 
-                    <div className="card" style={{ padding: '20px', marginTop: '30px' }}>
+                    <div className="card discovery-categories-card">
                         <h4 className="category-heading">EXAMPLE CATEGORIES</h4>
                         <div className="pills-container">
                             {categories.map((cat) => (
@@ -75,8 +78,8 @@ export default function DiscoveryEngine() {
                 </div>
 
                 <div className="reveal active image-panel-flipped" style={{ display: 'flex', justifyContent: 'center' }}>
-                    <div style={{ width: '100%', maxWidth: '460px', borderRadius: '12px', overflow: 'hidden', position: 'relative', height: '400px' }}>
-                        <img
+                    <div className="discovery-image-wrapper">
+                        <Image
                             src={discoveryImg}
                             alt="Geo Discovery Engine active scanning map"
                             style={{
@@ -86,10 +89,6 @@ export default function DiscoveryEngine() {
                                 borderRadius: '12px',
                                 border: '1px solid var(--color-border)',
                                 boxShadow: 'var(--shadow-lg)'
-                            }}
-                            onError={(e) => {
-                                e.target.style.display = 'none';
-                                e.target.nextSibling.style.display = 'block';
                             }}
                         />
                         {/* Beautiful SVG Scanning Area Visualization Fallback */}

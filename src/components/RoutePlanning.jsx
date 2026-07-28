@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import routePlanningImg from '../assets/hero.png';
 
 export default function RoutePlanning() {
@@ -71,8 +72,8 @@ export default function RoutePlanning() {
 
                 <div className="reveal active" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                     {/* Image container only, matching mockup */}
-                    <div style={{ width: '100%', maxWidth: '460px', borderRadius: '12px', overflow: 'hidden', height: '280px', position: 'relative' }}>
-                        <img
+                    <div className="routing-image-wrapper">
+                        <Image
                             src={routePlanningImg}
                             alt="MapWork Smart Route Planning mockup showing city routes"
                             style={{
@@ -82,10 +83,6 @@ export default function RoutePlanning() {
                                 borderRadius: '12px',
                                 border: '1px solid var(--color-border)',
                                 boxShadow: 'var(--shadow-md)'
-                            }}
-                            onError={(e) => {
-                                e.target.style.display = 'none';
-                                e.target.nextSibling.style.display = 'block';
                             }}
                         />
 

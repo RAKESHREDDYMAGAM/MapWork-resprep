@@ -1,4 +1,7 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function Navbar({ activeSection, onLinkClick }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,7 +46,7 @@ export default function Navbar({ activeSection, onLinkClick }) {
   return (
     <header className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container navbar">
-        <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="navbar-logo-link" aria-label="MapWork Home" style={{ gap: '10px' }}>
+        <Link href="#home" onClick={(e) => handleNavClick(e, '#home')} className="navbar-logo-link" aria-label="MapWork Home" style={{ gap: '10px' }}>
           <svg className="logo-icon-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '32px', height: '32px', flexShrink: 0 }}>
             <rect width="100" height="100" rx="22" fill="#0B1F45" />
             <polygon points="35,52 6,85 35,85" fill="#ef233c" />
@@ -62,7 +65,7 @@ export default function Navbar({ activeSection, onLinkClick }) {
             </div>
             <span className="logo-subtext" style={{ fontSize: '0.52rem', fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(11, 31, 69, 0.65)', marginTop: '2px' }}>DISCOVER. MAP. EXECUTE.</span>
           </div>
-        </a>
+        </Link>
 
         <nav>
           <ul className="nav-links">
@@ -72,14 +75,14 @@ export default function Navbar({ activeSection, onLinkClick }) {
 
               return (
                 <li key={link.name}>
-                  <a
+                  <Link
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
                     className={`nav-link ${isActive ? 'active' : ''}`}
                     aria-current={isActive ? 'page' : undefined}
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               );
             })}
@@ -87,9 +90,9 @@ export default function Navbar({ activeSection, onLinkClick }) {
         </nav>
 
         <div className="navbar-cta">
-          <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="btn btn-primary">
+          <Link href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="btn btn-primary">
             Get Started
-          </a>
+          </Link>
         </div>
 
         <button
@@ -118,24 +121,24 @@ export default function Navbar({ activeSection, onLinkClick }) {
         <ul className="mobile-nav-links">
           {navLinks.map((link) => (
             <li key={link.name}>
-              <a
+              <Link
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className="mobile-nav-link"
               >
                 {link.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
-        <a
+        <Link
           href="#contact"
           onClick={(e) => handleNavClick(e, '#contact')}
           className="btn btn-primary"
           style={{ width: '100%', textAlign: 'center' }}
         >
           Get Started
-        </a>
+        </Link>
       </div>
     </header>
   );

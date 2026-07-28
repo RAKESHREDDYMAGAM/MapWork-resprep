@@ -1,4 +1,7 @@
+"use client";
+
 import React from 'react';
+import Link from 'next/link';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -15,12 +18,11 @@ export default function Footer() {
         }
     };
 
-    retu
-    rn (
+    return (
         <footer className="footer-wrapper">
             <div className="container footer">
                 <div className="footer-brand">
-                    <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="navbar-logo-link" style={{ gap: '10px' }}>
+                    <Link href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="navbar-logo-link" style={{ gap: '10px' }}>
                         <svg className="logo-icon-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '32px', height: '32px', flexShrink: 0 }}>
                             <rect width="100" height="100" rx="22" fill="rgba(255, 255, 255, 0.1)" />
                             <polygon points="35,52 6,85 35,85" fill="#ef233c" />
@@ -37,10 +39,10 @@ export default function Footer() {
                                 <span style={{ color: '#FFFFFF' }}>Map</span>
                                 <span style={{ color: 'var(--color-accent-red)' }}>Work</span>
                             </div>
-                            <span className="logo-subtext" style={{ fontSize: '0.52rem', fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255, 255, 255, 0.5)', marginTop: '2px' }}>DISCOVER. MAP. EXECUTE.</span>
+                            <span className="logo-subtext" style={{ fontSize: '0.58rem', fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255, 255, 255, 0.7)', marginTop: '2px' }}>DISCOVER. MAP. EXECUTE.</span>
                         </div>
-                    </a>
-                    <p className="footer-attribution" style={{ marginTop: '8px', fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.5)' }}>
+                    </Link>
+                    <p className="footer-attribution" style={{ marginTop: '8px', fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.75)' }}>
                         A product of ResultPrep Systems.
                     </p>
                 </div>
@@ -49,10 +51,10 @@ export default function Footer() {
                     <h3 className="footer-col-title">Legal</h3>
                     <ul className="footer-col-links">
                         <li>
-                            <a href="#privacy" className="footer-link">Privacy Policy</a>
+                            <Link href="#privacy" className="footer-link">Privacy Policy</Link>
                         </li>
                         <li>
-                            <a href="#terms" className="footer-link">Terms of Service</a>
+                            <Link href="#terms" className="footer-link">Terms of Service</Link>
                         </li>
                     </ul>
                 </div>
@@ -61,10 +63,10 @@ export default function Footer() {
                     <h3 className="footer-col-title">Support</h3>
                     <ul className="footer-col-links">
                         <li>
-                            <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="footer-link">Contact Support</a>
+                            <Link href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="footer-link">Contact Support</Link>
                         </li>
                         <li>
-                            <a href="#docs" className="footer-link">API Documentation</a>
+                            <Link href="#docs" className="footer-link">API Documentation</Link>
                         </li>
                     </ul>
                 </div>
