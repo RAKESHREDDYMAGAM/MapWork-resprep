@@ -106,7 +106,7 @@ export default function About() {
                             Privacy-First Philosophy
                         </h3>
                         <p style={{ fontSize: '0.92rem', color: 'var(--color-text-body)', lineHeight: 1.5 }}>
-                            Inspired by the privacy systems from carcall.in, we encrypt and isolate your company's location datasets, ensuring zero third-party leaking.
+                            Inspired by the privacy systems from carcall.in, we encrypt and isolate your company&apos;s location datasets, ensuring zero third-party leaking.
                         </p>
                     </div>
 
