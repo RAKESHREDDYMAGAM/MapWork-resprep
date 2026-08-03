@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { trackEvent } from '../lib/analytics';
 
 export default function Navbar({ activeSection, onLinkClick }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,6 +35,14 @@ export default function Navbar({ activeSection, onLinkClick }) {
   const handleNavClick = (e, href) => {
     setIsDrawerOpen(false);
 
+    // Track navigation link click
+    const linkName = navLinks.find(link => link.href === href)?.name || href;
+    trackEvent('cta_click', {
+      ctaId: 'navbar_link',
+      label: linkName,
+      destinationUrl: href
+    });
+
     // If it's a hash anchor and we are currently on the home page, perform smooth scroll
     if (href.startsWith('/#') && pathname === '/') {
       e.preventDefault();
@@ -48,10 +57,27 @@ export default function Navbar({ activeSection, onLinkClick }) {
     }
   };
 
+  const handleCtaClick = () => {
+    trackEvent('cta_click', {
+      ctaId: 'navbar_get_started',
+      label: 'Get Started',
+      destinationUrl: '/contact'
+    });
+  };
+
   return (
     <header className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container navbar">
-        <Link href="/#home" onClick={(e) => handleNavClick(e, '/#home')} className="navbar-logo-link" aria-label="MapWork Home" style={{ gap: '10px' }}>
+        <Link
+          href="/#home"
+          onClick={(e) => {
+            trackEvent('cta_click', { ctaId: 'navbar_logo', label: 'Logo Home', destinationUrl: '/#home' });
+            handleNavClick(e, '/#home');
+          }}
+          className="navbar-logo-link"
+          aria-label="MapWork Home"
+          style={{ gap: '10px' }}
+        >
           <svg className="logo-icon-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '32px', height: '32px', flexShrink: 0 }}>
             <rect width="100" height="100" rx="22" fill="#0B1F45" />
             <polygon points="35,52 6,85 35,85" fill="#ef233c" />
@@ -95,14 +121,20 @@ export default function Navbar({ activeSection, onLinkClick }) {
         </nav>
 
         <div className="navbar-cta">
-          <Link href="/contact" onClick={(e) => handleNavClick(e, '/contact')} className="btn btn-primary">
+          <Link href="/contact" onClick={(e) => { handleCtaClick(); handleNavClick(e, '/contact'); }} className="btn btn-primary">
             Get Started
           </Link>
         </div>
 
         <button
           className="mobile-menu-btn"
-          onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+          onClick={() => {
+            const newState = !isDrawerOpen;
+            setIsDrawerOpen(newState);
+            trackEvent('ui_interaction', {
+              action: newState ? 'mobile_menu_open' : 'mobile_menu_close'
+            });
+          }}
           aria-expanded={isDrawerOpen}
           aria-label="Toggle Navigation Menu"
         >
@@ -142,7 +174,14 @@ export default function Navbar({ activeSection, onLinkClick }) {
         </ul>
         <Link
           href="/contact"
-          onClick={(e) => handleNavClick(e, '/contact')}
+          onClick={(e) => {
+            trackEvent('cta_click', {
+              ctaId: 'navbar_mobile_get_started',
+              label: 'Get Started',
+              destinationUrl: '/contact'
+            });
+            handleNavClick(e, '/contact');
+          }}
           className="btn btn-primary"
           style={{ width: '100%', textAlign: 'center' }}
         >
@@ -152,3 +191,4 @@ export default function Navbar({ activeSection, onLinkClick }) {
     </header>
   );
 }
+

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { trackEvent } from '../lib/analytics';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -93,6 +94,13 @@ export default function Footer() {
                                 href="https://wa.me/918970007467?text=Hello%20MapWork,%20we%20need%20assistance."
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={() => {
+                                    trackEvent('cta_click', {
+                                        ctaId: 'whatsapp_footer',
+                                        label: 'WhatsApp Footer',
+                                        destinationUrl: 'https://wa.me/918970007467'
+                                    });
+                                }}
                                 onMouseEnter={() => setIsWaHovered(true)}
                                 onMouseLeave={() => setIsWaHovered(false)}
                                 style={{
@@ -120,7 +128,7 @@ export default function Footer() {
                                 </div>
 
                                 {/* Text labels */}
-                                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                <div style={{ display: 'flex', flexDirection: 'column', whiteSpace: 'nowrap' }}>
                                     <span style={{
                                         fontSize: '0.88rem',
                                         fontWeight: 700,
@@ -133,12 +141,13 @@ export default function Footer() {
                                         WHATSAPP
                                     </span>
                                     <span style={{
-                                        fontSize: '1.38rem',
+                                        fontSize: '1.18rem',
                                         fontWeight: 800,
                                         color: isWaHovered ? 'var(--color-accent-red)' : '#FFFFFF',
                                         letterSpacing: '0.01em',
                                         marginTop: '2px',
                                         lineHeight: 1.1,
+                                        whiteSpace: 'nowrap',
                                         transition: 'color 0.25s ease'
                                     }}>
                                         +91 89700 07467

@@ -3,10 +3,16 @@
 import React from 'react';
 import Image from 'next/image';
 import heroImg from '../assets/route_planning.png';
+import { trackEvent } from '../lib/analytics';
 
 export default function Hero() {
     const handleScrollToContact = (e) => {
         e.preventDefault();
+        trackEvent('cta_click', {
+            ctaId: 'hero_get_started',
+            label: 'Get Started',
+            destinationUrl: '#contact'
+        });
         const element = document.getElementById('contact');
         if (element) {
             window.scrollTo({
@@ -14,6 +20,14 @@ export default function Hero() {
                 behavior: 'smooth'
             });
         }
+    };
+
+    const handleWatchDemoClick = () => {
+        trackEvent('cta_click', {
+            ctaId: 'hero_watch_demo',
+            label: 'Watch Demo',
+            destinationUrl: '#demo'
+        });
     };
 
     return (
@@ -32,7 +46,7 @@ export default function Hero() {
                         <a href="#contact" onClick={handleScrollToContact} className="btn btn-primary">
                             Get Started
                         </a>
-                        <a href="#demo" className="btn btn-secondary">
+                        <a href="#demo" onClick={handleWatchDemoClick} className="btn btn-secondary">
                             <svg className="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polygon points="10 8 16 12 10 16 10 8"></polygon>

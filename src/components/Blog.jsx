@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 // Mock Blog Posts Dataset directly embedded to avoid page directory conflicts
@@ -124,88 +124,10 @@ Updating is simple. Change your system endpoint hooks to call \`https://api.mapw
     }
 ];
 
-// Helper to render markdown text inside component modal
-function renderModalMarkdown(content) {
-    if (!content) return null;
-    const lines = content.split('\n');
-    let currentList = [];
-    const renderedElements = [];
-
-    const flushList = (key) => {
-        if (currentList.length > 0) {
-            renderedElements.push(
-                <ul key={`list- ${key}`} style={{ paddingLeft: '24px', marginBottom: '20px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {currentList}
-                </ul>
-            );
-            currentList = [];
-        }
-    };
-
-    const parseBold = (text) => {
-        if (!text.includes('**')) return text;
-        return text.split('**').map((part, i) => i % 2 === 1 ? <strong key={i} style={{ color: 'var(--color-primary-navy)' }}>{part}</strong> : part);
-    };
-
-    lines.forEach((line, index) => {
-        const trimmed = line.trim();
-        if (!trimmed) {
-            flushList(index);
-            return;
-        }
-
-        if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
-            currentList.push(
-                <li key={`li - ${index}`} style={{ fontSize: '0.98rem', color: 'var(--color-text-body)', lineHeight: 1.6 }}>
-                    {parseBold(trimmed.substring(2))}
-                </li>
-            );
-        } else if (trimmed.startsWith('### ')) {
-            flushList(index);
-            renderedElements.push(
-                <h3 key={`h3 - ${index}`} style={{ fontSize: '1.25rem', color: 'var(--color-primary-navy)', marginTop: '28px', marginBottom: '12px', fontWeight: 700 }}>
-                    {trimmed.substring(4)}
-                </h3>
-            );
-        } else if (trimmed.startsWith('## ')) {
-            flushList(index);
-            renderedElements.push(
-                <h2 key={`h2 - ${index}`} style={{ fontSize: '1.5rem', color: 'var(--color-primary-navy)', marginTop: '36px', marginBottom: '16px', fontWeight: 750, borderBottom: '1px solid var(--color-border)', paddingBottom: '6px' }}>
-                    {trimmed.substring(3)}
-                </h2>
-            );
-        } else if (trimmed.startsWith('# ')) {
-            flushList(index);
-            renderedElements.push(
-                <h1 key={`h1 - ${index}`} style={{ fontSize: '1.9rem', color: 'var(--color-primary-navy)', marginTop: '20px', marginBottom: '20px', fontWeight: 800 }}>
-                    {trimmed.substring(2)}
-                </h1>
-            );
-        } else if (trimmed.startsWith('> ')) {
-            flushList(index);
-            renderedElements.push(
-                <blockquote key={`bq - ${index}`} style={{ borderLeft: '4px solid var(--color-accent-red)', paddingLeft: '16px', margin: '20px  0', fontStyle: 'italic', color: 'var(--color-primary-navy)' }}>
-                    {trimmed.substring(2)}
-                </blockquote>
-            );
-        } else {
-            flushList(index);
-            renderedElements.push(
-                <p key={`p - ${index}`} style={{ fontSize: '0.98rem', color: 'var(--color-text-body)', lineHeight: 1.65, marginBottom: '16px' }}>
-                    {parseBold(trimmed)}
-                </p>
-            );
-        }
-    });
-
-    flushList(lines.length);
-    return renderedElements;
-}
 
 export default function Blog() {
     const [searchQuery, setSearchQuery] = useState('');
     const [currentCategory, setCurrentCategory] = useState('All');
-    const [activePost, setActivePost] = useState(null);
 
     // Categories list
     const categories = ['All', 'Field Operations', 'Mapping Intelligence', 'Sales Strategy', 'Product Updates'];
@@ -218,16 +140,6 @@ export default function Blog() {
         return matchesCategory && matchesSearch;
     });
 
-    // Handle ESC key to close modal
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            if (e.key === 'Escape') {
-                setActivePost(null);
-            }
-        };
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, []);
 
     return (
         <section id="blog" style={{ backgroundColor: 'var(--color-bg-white)', padding: '100px 0', borderTop: '1px solid var(--color-border)' }}>
@@ -410,137 +322,6 @@ export default function Blog() {
                 )}
 
             </div>
-
-            {/* Reader Modal Overlay */}
-            {activePost && (
-                <div
-                    onClick={() => setActivePost(null)}
-                    style={{
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundColor: 'rgba(11, 31, 69, 0.7)',
-                        backdropFilter: 'blur(5px)',
-                        zIndex: 9999,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        padding: '20px',
-                        boxSizing: 'border-box'
-                    }}
-                >
-                    {/* Modal Container */}
-                    <div
-                        onClick={(e) => e.stopPropagation()}
-                        style={{
-                            backgroundColor: '#FFFFFF',
-                            borderRadius: 'var(--radius-lg)',
-                            width: '100%',
-                            maxWidth: '780px',
-                            maxHeight: '90vh',
-                            overflowY: 'auto',
-                            boxShadow: 'var(--shadow-lg)',
-                            position: 'relative',
-                            boxSizing: 'border-box',
-                            display: 'flex',
-                            flexDirection: 'column'
-                        }}
-                    >
-                        {/* Modal Header Actions (Close Button) */}
-                        <div style={{
-                            position: 'sticky',
-                            top: 0,
-                            backgroundColor: '#FFFFFF',
-                            borderBottom: '1px solid var(--color-border)',
-                            padding: '16px 24px',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            zIndex: 10
-                        }}>
-                            <span style={{ fontSize: '0.8rem', color: 'var(--color-text-body)', fontWeight: 600 }}>
-                                MapWork Insights • {activePost.category}
-                            </span>
-                            <button
-                                onClick={() => setActivePost(null)}
-                                style={{
-                                    backgroundColor: 'var(--color-bg-light)',
-                                    border: '1px solid var(--color-border)',
-                                    color: 'var(--color-primary-navy)',
-                                    width: '32px',
-                                    height: '32px',
-                                    borderRadius: '50%',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    cursor: 'pointer',
-                                    fontWeight: 'bold',
-                                    fontSize: '1rem',
-                                    transition: 'background-color 0.2s'
-                                }}
-                                aria-label="Close article modal"
-                            >
-                                ✕
-                            </button>
-                        </div>
-
-                        {/* Modal Scrollable Content Body */}
-                        <div style={{ padding: '32px 40px 48px 40px' }}>
-
-                            {/* Meta details */}
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-                                <div style={{
-                                    width: '36px',
-                                    height: '36px',
-                                    borderRadius: '50%',
-                                    backgroundColor: 'var(--color-primary-navy)',
-                                    color: '#FFFFFF',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontWeight: 'bold',
-                                    fontSize: '0.9rem'
-                                }}>
-                                    {activePost.author.charAt(0)}
-                                </div>
-                                <div>
-                                    <p style={{ margin: 0, fontSize: '0.88rem', fontWeight: 650, color: 'var(--color-primary-navy)' }}>
-                                        {activePost.author}
-                                    </p>
-                                    <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--color-text-body)' }}>
-                                        Published on {activePost.date} • {activePost.readTime}
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Parsed Body */}
-                            <div className="article-body">
-                                {renderModalMarkdown(activePost.content)}
-                            </div>
-
-                            {/* Closing footer check */}
-                            <div style={{
-                                marginTop: '40px',
-                                paddingTop: '24px',
-                                borderTop: '1px solid var(--color-border)',
-                                textAlign: 'center'
-                            }}>
-                                <button
-                                    onClick={() => setActivePost(null)}
-                                    className="btn btn-secondary"
-                                    style={{ padding: '10px 24px', fontSize: '0.9rem' }}
-                                >
-                                    Close Article
-                                </button>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            )}
 
         </section>
     );

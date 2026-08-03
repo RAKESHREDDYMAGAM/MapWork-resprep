@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { trackEvent } from '../lib/analytics';
 
 export default function Contact() {
     // Form input states
@@ -113,6 +114,11 @@ export default function Contact() {
         setTouched({ name: true, email: true, message: true });
 
         if (Object.keys(newErrors).length > 0) {
+            trackEvent('form_submission', {
+                formId: 'contact_audit_request',
+                success: false,
+                validationErrors: Object.keys(newErrors).join(','),
+            });
             return;
         }
 
@@ -121,6 +127,11 @@ export default function Contact() {
         setTimeout(() => {
             setIsSubmitting(false);
             setIsSubmitted(true);
+            trackEvent('form_submission', {
+                formId: 'contact_audit_request',
+                success: true,
+                orgSize: formData.orgSize,
+            });
             setFormData({
                 name: '',
                 email: '',
@@ -168,6 +179,14 @@ export default function Contact() {
                             href="https://wa.me/918970007467?text=Hello%20MapWork,%20we%20need%20assistance%20integrating%20custom%20operational%20grids."
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={() => {
+                                trackEvent('cta_click', {
+                                    ctaId: 'whatsapp_contact',
+                                    label: 'WhatsApp Contact Form',
+                                    destinationUrl: 'https://wa.me/918970007467'
+                                });
+                            }}
+
                             style={{
                                 display: 'flex',
                                 alignItems: 'center',
